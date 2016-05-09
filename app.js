@@ -1,5 +1,7 @@
 (function() {
-    var app = angular.module('flightSelector', []);
+    var app = angular.module('flightSelector', [
+        'flightSelector.passengerSelector'
+    ]);
 
     app.controller('FlightSelectorController', [
         '$scope',
@@ -13,11 +15,12 @@
                 infants: 0
             };
 
-            $scope.submitPassengerCount = function () {
-                if ((parseInt($scope.passengers.adults) + parseInt($scope.passengers.children) + parseInt($scope.passengers.infants)) <= 0) {
-                    alert('You must send at least one person!');
-                    return;
-                }
+            $scope.updatePassengerCount = function (adults, children, infants) {
+                $scope.passengers = {
+                    adults: parseInt(adults),
+                    children: parseInt(children),
+                    infants: parseInt(infants)
+                };
 
                 $scope.step = 2;
             };

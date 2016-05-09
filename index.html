@@ -7,15 +7,15 @@
 <body ng-controller="FlightSelectorController as flightSelector">
   <h1>Find a flight</h1>
   <h2>1. Select number of passengers</h2>
-  <select
-      ng-model="passengers.adults"
-      ng-options="val for val in [0,1,2,3,4,5]"
-  >
-  </select>
-
-  <input type="button" ng-click="submitPassengerCount()" value="Continue" />
+  <passenger-selector
+      adult-passengers="{{ passengers.adults }}"
+      child-passengers="{{ passengers.children }}"
+      infant-passengers="{{ passengers.infants }}"
+      update-passenger-count-callback="updatePassengerCount(adults, children, infants)"
+  ></passenger-selector>
 
   <script src="bower_components/angular/angular.js"></script>
+  <script src="passengerSelector.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
