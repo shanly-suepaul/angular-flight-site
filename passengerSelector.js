@@ -1,10 +1,13 @@
 (function() {
     'use strict';
 
-    var module = angular.module('flightSelector.passengerSelector', []);
+    var module = angular.module('flightSelector.passengerSelector', [
+        'ngDialog'
+    ]);
 
     module.directive('passengerSelector', [
-        function() {
+        'ngDialog',
+        function(ngDialog) {
             return {
                 restrict: 'E',
                 scope: {
@@ -18,7 +21,10 @@
 
                     scope.updatePassengerCount = function() {
                         if ((parseInt(scope.adultPassengers) + parseInt(scope.childPassengers) + parseInt(scope.infantPassengers)) <= 0) {
-                            alert('You must send at least one person!');
+                            ngDialog.open({
+                                plain: true,
+                                template: '<h1>You need at least one person</h1>'
+                            });
                             return;
                         }
 
