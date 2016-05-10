@@ -15,7 +15,7 @@
                 infants: 0
             };
 
-            $scope.updatePassengerCount = function (adults, children, infants) {
+            $scope.setPassengerCount = function (adults, children, infants) {
                 $scope.passengers = {
                     adults: parseInt(adults),
                     children: parseInt(children),
