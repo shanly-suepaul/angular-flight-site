@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    var module = angular.module('flightSelector.passengerSelector', [
+    var module = angular.module('app.passengerSelector', [
         'ngDialog'
     ]);
 

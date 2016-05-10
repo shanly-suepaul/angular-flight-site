@@ -1,6 +1,6 @@
 (function() {
-    var app = angular.module('flightSelector', [
-        'flightSelector.passengerSelector'
+    var app = angular.module('app', [
+        'app.passengerSelector'
     ]);
 
     app.controller('FlightSelectorController', [
