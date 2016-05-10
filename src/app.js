@@ -1,5 +1,13 @@
-(function() {
-    var app = angular.module('app', [
+define([
+    'angular',
+
+    './passengerSelector'
+], function (
+    ng
+) {
+    'use strict';
+
+    var app = ng.module('app', [
         'app.passengerSelector'
     ]);
 
@@ -27,4 +35,5 @@
         }
     ]);
 
-})();
+    ng.bootstrap(document, [ 'app' ]);
+});

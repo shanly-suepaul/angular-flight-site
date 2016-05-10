@@ -1,7 +1,19 @@
-(function() {
+define([
+    'angular',
+
+    'ngDialog',
+
+    'text!./passengerSelector.html'
+], function (
+    ng,
+
+    ngDialog,
+
+    template
+) {
     'use strict';
 
-    var module = angular.module('app.passengerSelector', [
+    var module = ng.module('app.passengerSelector', [
         'ngDialog'
     ]);
 
@@ -16,7 +28,7 @@
                     infantPassengers: '@',
                     updatePassengerCountCallback: '&'
                 },
-                templateUrl: 'passengerSelector.html',
+                template: template,
                 link: function(scope) {
 
                     scope.updatePassengerCount = function() {
@@ -38,4 +50,4 @@
             };
         }
     ])
-})();
+});

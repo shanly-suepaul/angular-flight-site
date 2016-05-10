@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "dependencies": {
     "angular": "1.5.5",
+    "requirejs": "2.1.9",
+    "requirejs-text": "2.0.10",
     "ng-dialog": "0.6.1"
   },
   "devDependencies": {
