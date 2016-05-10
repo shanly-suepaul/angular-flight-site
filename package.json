@@ -1,0 +1,12 @@
+{
+  "name": "angular-flight-app",
+  "version": "0.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "bower": "~1.2.8",
+    "requirejs": "~2.1.9"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}
