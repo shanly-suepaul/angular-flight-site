@@ -26,6 +26,16 @@ function (
                         console.log('Something went wrong!', error);
                         return [];
                     });
+                },
+
+                getDestinationsForAirport: function (airportId) {
+                    // @todo change to endpoint that can use POST
+                    return $http.get('destinations.json').then(function (response) {
+                        return response.data.airportIds;
+                    }, function(error) {
+                        console.log('Something went wrong!');
+                        return [];
+                    });
                 }
             };
     } ]);
