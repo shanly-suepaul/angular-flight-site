@@ -24,6 +24,7 @@ define([
             dataAPI
         ) {
             $scope.loadingAirportData = true;
+            $scope.loadingArrivalAirports = true;
             $scope.passengers = {
                 adults: 1,
                 children: 0,
@@ -31,6 +32,7 @@ define([
             };
             $scope.departureAirport = null;
             $scope.airportList = [];
+            $scope.arrivalAirports = [];
 
             dataAPI.getAiportData().then(function(airportList) {
                 $scope.airportList = airportList;
@@ -50,6 +52,15 @@ define([
 
             $scope.setDepartureAirport = function (airportId) {
                 $scope.departureAirport = airportId;
+
+                dataAPI.getDestinationsForAirport($scope.departureAirport).then(function (airportIds) {
+                    $scope.arrivalAirports = airportIds;
+                    $scope.loadingArrivalAirports = false;
+                }, function (error) {
+                    console.log('Something went wrong!');
+                    $scope.arrivalAirports = [];
+                    $scope.loadingArrivalAirports = false;
+                });
             };
         }
     ]);
