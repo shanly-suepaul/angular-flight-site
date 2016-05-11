@@ -23,15 +23,22 @@ define([
             $scope,
             dataAPI
         ) {
-            $scope.step = 1;
+            $scope.loadingAirportData = true;
             $scope.passengers = {
                 adults: 1,
                 children: 0,
                 infants: 0
             };
             $scope.departureAirport = null;
+            $scope.airportList = [];
 
-            $scope.airportList = dataAPI.getAiportData();
+            dataAPI.getAiportData().then(function(airportList) {
+                $scope.airportList = airportList;
+                $scope.loadingAirportData = false;
+            }, function (error) {
+                console.log('Something went wrong!', error);
+                $scope.loadingAirportData = false;
+            });
 
             $scope.setPassengerCount = function (adults, children, infants) {
                 $scope.passengers = {
@@ -39,8 +46,6 @@ define([
                     children: parseInt(children),
                     infants: parseInt(infants)
                 };
-
-                $scope.step = 2;
             };
 
             $scope.setDepartureAirport = function (airportId) {

@@ -1,0 +1,28 @@
+{
+  "airports": [
+    {
+      "id": "LHR",
+      "name": "London Heathrow"
+    },
+    {
+      "id": "LGW",
+      "name": "London Gatwick"
+    },
+    {
+      "id": "BRS",
+      "name": "Bristol"
+    },
+    {
+      "id": "GLA",
+      "name": "Glasgow"
+    },
+    {
+      "id": "EDI",
+      "name": "Edinborough"
+    },
+    {
+      "id": "MAN",
+      "name": "Manchester"
+    }
+  ]
+}

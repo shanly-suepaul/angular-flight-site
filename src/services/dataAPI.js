@@ -9,38 +9,23 @@ function (
     var dataAPI = ng.module('app.dataAPI', []);
 
     return dataAPI.service('dataAPI', [
+        '$http',
         function (
+            $http
         ) {
-            var airportList = [
-                {
-                    id: 'LHR',
-                    name: 'London Heathrow'
-                },
-                {
-                    id: 'LGW',
-                    name: 'London Gatwick'
-                },
-                {
-                    id: 'BRS',
-                    name: 'Bristol'
-                },
-                {
-                    id: 'GLA',
-                    name: 'Glasgow'
-                },
-                {
-                    id: 'EDI',
-                    name: 'Edinborough'
-                },
-                {
-                    id: 'MAN',
-                    name: 'Manchester'
-                }
-            ];
-
             return {
-                getAiportData: function() {
-                    return airportList;
+                getAiportData: function () {
+                    return $http.get('airports.json').then(function (response) {
+                        return response.data.airports.map(function (airport) {
+                            return {
+                                id: airport.id,
+                                name: airport.name
+                            };
+                        });
+                    }, function (error) {
+                        console.log('Something went wrong!', error);
+                        return [];
+                    });
                 }
             };
     } ]);
