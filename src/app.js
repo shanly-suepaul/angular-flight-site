@@ -4,16 +4,18 @@ define([
     './services/dataAPI',
 
     './passengerSelector/passengerSelector',
-    './departureAirportSelector/departureAirportSelector'
+    './departureAirportSelector/departureAirportSelector',
+    './arrivalAirportSelector/arrivalAirportSelector'
 ], function (
     ng
 ) {
     'use strict';
 
     var app = ng.module('app', [
+        'app.dataAPI',
         'app.passengerSelector',
         'app.departureAirportSelector',
-        'app.dataAPI'
+        'app.arrivalAirportSelector'
     ]);
 
     app.controller('FlightSelectorController', [

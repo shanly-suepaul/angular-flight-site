@@ -1,0 +1,6 @@
+<select
+    ng-model="arrivalAirport"
+    ng-options="airport as airport.name disable when !airport.available for airport in airportList track by airport.id"
+>
+</select>
+<input type="button" ng-click="updateDepartureAirport()" value="Continue" />
