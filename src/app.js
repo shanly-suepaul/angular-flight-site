@@ -1,6 +1,8 @@
 define([
     'angular',
 
+    './services/dataAPI',
+
     './passengerSelector/passengerSelector',
     './departureAirportSelector/departureAirportSelector'
 ], function (
@@ -10,13 +12,16 @@ define([
 
     var app = ng.module('app', [
         'app.passengerSelector',
-        'app.departureAirportSelector'
+        'app.departureAirportSelector',
+        'app.dataAPI'
     ]);
 
     app.controller('FlightSelectorController', [
         '$scope',
+        'dataAPI',
         function(
-            $scope
+            $scope,
+            dataAPI
         ) {
             $scope.step = 1;
             $scope.passengers = {
@@ -26,32 +31,7 @@ define([
             };
             $scope.departureAirport = null;
 
-            $scope.airportList = [
-                {
-                    id: 'LHR',
-                    name: 'London Heathrow'
-                },
-                {
-                    id: 'LGW',
-                    name: 'London Gatwick'
-                },
-                {
-                    id: 'BRS',
-                    name: 'Bristol'
-                },
-                {
-                    id: 'GLA',
-                    name: 'Glasgow'
-                },
-                {
-                    id: 'EDI',
-                    name: 'Edinborough'
-                },
-                {
-                    id: 'MAN',
-                    name: 'Manchester'
-                }
-            ];
+            $scope.airportList = dataAPI.getAiportData();
 
             $scope.setPassengerCount = function (adults, children, infants) {
                 $scope.passengers = {
