@@ -23,8 +23,6 @@ define([
                 },
                 template: template,
                 link: function(scope) {
-                    scope.arrivalAirport = null;
-
                     var sortAirports = function (a, b) {
                         if (a.name.localeCompare(b.name) < 0) {
                             return -1;
@@ -48,9 +46,9 @@ define([
                         })
                         .sort(sortAirports);
 
-                    scope.updateArrivalAirport = function() {
+                    scope.updateArrivalAirport = function(airportId) {
                         scope.updateArrivalAirportCallback({
-                            airportId: scope.arrivalAirport.id
+                            airportId: airportId
                         });
                     };
                 }

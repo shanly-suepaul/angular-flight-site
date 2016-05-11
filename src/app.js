@@ -33,6 +33,7 @@ define([
                 infants: 0
             };
             $scope.departureAirport = null;
+            $scope.arrivalAirport = null;
             $scope.airportList = [];
             $scope.arrivalAirports = [];
 
@@ -63,6 +64,10 @@ define([
                     $scope.arrivalAirports = [];
                     $scope.loadingArrivalAirports = false;
                 });
+            };
+
+            $scope.setArrivalAirport = function(airportId) {
+                $scope.arrivalAirport = airportId;
             };
         }
     ]);

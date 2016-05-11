@@ -1,0 +1,39 @@
+.arrival-airport-selector {
+  max-width: 500px;
+
+  > h3 {
+    background-image: url('i/arrival.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    padding-left: 30px;
+  }
+
+  .arrival-airport-selector__list {
+    width: 100%;
+
+    &.-valid > li {
+      background-color: lightblue;
+    }
+
+    &.-invalid > li {
+      background-color: lightgrey;
+    }
+
+    > li {
+      display: block;
+      padding: 10px;
+      text-align: center;
+      margin: 10px;
+
+      > a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: 30px;
+        text-decoration: none;
+        color: black;
+      }
+    }
+  }
+}

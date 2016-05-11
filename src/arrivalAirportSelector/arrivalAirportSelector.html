@@ -1,11 +1,11 @@
 <div class="arrival-airport-selector">
   <h3>Choose the airport you want to fly to?</h3>
-  <ul class="arrival-airport-selector__valid-list">
+  <ul class="arrival-airport-selector__list -valid">
     <li ng-repeat="airport in validAirportList">
-      <a ng-click="selectAirport(airport.id)">{{ airport.name }} ({{ airport.id }})</a>
+      <a href ng-click="updateArrivalAirport(airport.id)">{{ airport.name }} ({{ airport.id }})</a>
     </li>
   </ul>
-  <ul class="arrival-airport-selector__invalid-list">
+  <ul class="arrival-airport-selector__list -invalid">
     <li ng-repeat="airport in invalidAirportList">
       <p>{{ airport.name }} ({{ airport.id }})</p>
       <p>This airport isn't available from your departure point</p>
