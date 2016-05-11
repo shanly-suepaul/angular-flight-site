@@ -1,8 +1,8 @@
 define([
     'angular',
 
-    './passengerSelector',
-    './departureAirportSelector'
+    './passengerSelector/passengerSelector',
+    './departureAirportSelector/departureAirportSelector'
 ], function (
     ng
 ) {
