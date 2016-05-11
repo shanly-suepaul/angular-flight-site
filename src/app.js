@@ -1,14 +1,16 @@
 define([
     'angular',
 
-    './passengerSelector'
+    './passengerSelector',
+    './departureAirportSelector'
 ], function (
     ng
 ) {
     'use strict';
 
     var app = ng.module('app', [
-        'app.passengerSelector'
+        'app.passengerSelector',
+        'app.departureAirportSelector'
     ]);
 
     app.controller('FlightSelectorController', [
@@ -22,6 +24,34 @@ define([
                 children: 0,
                 infants: 0
             };
+            $scope.departureAirport = null;
+
+            $scope.airportList = [
+                {
+                    id: 'LHR',
+                    name: 'London Heathrow'
+                },
+                {
+                    id: 'LGW',
+                    name: 'London Gatwick'
+                },
+                {
+                    id: 'BRS',
+                    name: 'Bristol'
+                },
+                {
+                    id: 'GLA',
+                    name: 'Glasgow'
+                },
+                {
+                    id: 'EDI',
+                    name: 'Edinborough'
+                },
+                {
+                    id: 'MAN',
+                    name: 'Manchester'
+                }
+            ];
 
             $scope.setPassengerCount = function (adults, children, infants) {
                 $scope.passengers = {
@@ -31,6 +61,10 @@ define([
                 };
 
                 $scope.step = 2;
+            };
+
+            $scope.setDepartureAirport = function (airportId) {
+                $scope.departureAirport = airportId;
             };
         }
     ]);

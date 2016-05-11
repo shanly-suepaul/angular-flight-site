@@ -1,0 +1,6 @@
+<select
+    ng-model="departureAirport"
+    ng-options="airport as airport.name for airport in getAirportList() track by airport.id"
+>
+</select>
+<input type="button" ng-click="updateDepartureAirport()" value="Continue" />
