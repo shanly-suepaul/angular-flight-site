@@ -23,18 +23,30 @@ define([
                 },
                 template: template,
                 link: function(scope) {
-                    var validArrivalAirportIds = scope.getValidArrivalAirportIds();
-                    console.log(validArrivalAirportIds);
-
                     scope.arrivalAirport = null;
-                    scope.airportList = scope.getAirportList().map(function(airport) {
-                        return {
-                            id: airport.id,
-                            name: airport.name,
-                            available: validArrivalAirportIds.indexOf(airport.id) > -1
+
+                    var sortAirports = function (a, b) {
+                        if (a.name.localeCompare(b.name) < 0) {
+                            return -1;
                         }
-                    });
-                    console.log(scope.airportList);
+                        if (a.name.localeCompare(b.name) > 0) {
+                            return 1;
+                        }
+                        return 0;
+                    };
+
+
+                    scope.validAirportList = scope.getAirportList()
+                        .filter(function(airport) {
+                            return scope.getValidArrivalAirportIds().indexOf(airport.id) > -1;
+                        })
+                        .sort(sortAirports);
+
+                    scope.invalidAirportList = scope.getAirportList()
+                        .filter(function(airport) {
+                            return scope.getValidArrivalAirportIds().indexOf(airport.id) === -1;
+                        })
+                        .sort(sortAirports);
 
                     scope.updateArrivalAirport = function() {
                         scope.updateArrivalAirportCallback({
