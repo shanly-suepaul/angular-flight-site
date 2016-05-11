@@ -16,7 +16,13 @@
     "gulp-serve": "^1.2.0",
     "gulp-watch": "~4.1.0",
     "requirejs": "~2.1.9",
-    "rimraf": "^2.5.2"
+    "rimraf": "^2.5.2",
+    "karma": "~0.12.8",
+    "karma-coverage": "~0.2.6",
+    "karma-mocha": "~0.1.9",
+    "karma-phantomjs-launcher": "1.0.0",
+    "karma-requirejs": "~0.2.0",
+    "karma-sinon-chai": "~0.2.0"
   },
   "engines": {
     "node": ">=0.8.0"
