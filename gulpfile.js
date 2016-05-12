@@ -80,7 +80,7 @@ gulp.task('test', function (cb) {
     rimraf(karmaTmpDir, function () {
         karma.server.start({
             files: [
-                'main.js', // main paths file
+                'src/main.js', // main paths file
                 'test/main.js',
 
                 { pattern: 'src/**/*.{js,json,html}', included: false },
