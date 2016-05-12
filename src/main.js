@@ -6,6 +6,7 @@
 requirejs.config({
     baseUrl: 'src',
     paths: {
+        'almond': '../bower_components/almond/almond',
         'angular': '../bower_components/angular/angular',
         'ngDialog': '../bower_components/ng-dialog/js/ngDialog',
         'text': '../bower_components/requirejs-text/text'
