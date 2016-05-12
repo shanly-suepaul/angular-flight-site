@@ -12,6 +12,8 @@ var watch = require('gulp-watch');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var replace = require('gulp-replace');
+var processhtml = require('gulp-processhtml');
 var requireJS = require('gulp-requirejs');
 var livereload = require('gulp-livereload');
 var connectLivereload = require('connect-livereload');
@@ -58,6 +60,14 @@ function getCompiledStylesheetAsset(ignoreErrors) {
     return gulp.src('src/**/*.scss')
         .pipe(sass().on('error', function () {}))
         .pipe(concat('app.css'));
+}
+
+function getProductionAssets() {
+    return es.concat(
+        gulp.src('assets/**/*.{png,jpg,jpeg,gif,webp,svg,woff,eot,swf}'),
+
+        getCompiledStylesheetAsset()
+    );
 }
 
 gulp.task('serve', function () {
@@ -188,7 +198,13 @@ gulp.task('dist', [ 'rev', 'jshint' ], function () {
     }
 
     return es.concat(
-        getCompiledScript().pipe(rename({ suffix: '-' + currentRevision })).pipe(uglify()).pipe(rename({ suffix: '.min' }))
+        gulp.src('index.html').pipe(processhtml())
+            .pipe(replace('@@BUILD_REV', currentRevision))
+            .pipe(replace('@@APP_VERSION', appVersion)),
+        getCompiledScript().pipe(rename({ suffix: '-' + currentRevision })).pipe(uglify()).pipe(rename({ suffix: '.min' })),
+        getProductionAssets().pipe(rename(function (path) {
+            path.dirname = 'assets-' + currentRevision + '/' + path.dirname;
+        }))
     )
     .pipe(gulp.dest(targetDir));
 });

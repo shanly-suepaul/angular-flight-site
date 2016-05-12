@@ -4,7 +4,9 @@
   <meta charset="utf-8">
   <title>Flights home</title>
 
+  <!-- build:[href] assets-@@BUILD_REV/app.css -->
   <link rel="stylesheet" href="assets/app.css" />
+  <!-- /build -->
 </head>
 <body ng-controller="FlightSelectorController as flightSelector">
   <h1>Find a flight</h1>
@@ -33,8 +35,11 @@
     ></arrival-airport-selector>
   </div>
 
+
+  <!-- build:js app-@@BUILD_REV.min.js -->
   <script src="bower_components/requirejs/require.js"></script>
   <script src="src/main.js"></script>
+  <!-- /build -->
   <script type="text/javascript">
     require(['app']);
   </script>
