@@ -23,13 +23,24 @@ define([
             return {
                 restrict: 'E',
                 scope: {
-                    adultPassengers: '@',
-                    childPassengers: '@',
-                    infantPassengers: '@',
+                    defaultAdultPassengers: '=',
+                    defaultChildPassengers: '=',
+                    defaultInfantPassengers: '=',
                     updatePassengerCountCallback: '&'
                 },
                 template: template,
                 link: function(scope) {
+                    scope.$watch('defaultAdultPassengers', function () {
+                        scope.adultPassengers = scope.defaultAdultPassengers;
+                    });
+
+                    scope.$watch('defaultChildPassengers', function () {
+                        scope.childPassengers = scope.defaultChildPassengers;
+                    });
+
+                    scope.$watch('defaultInfantPassengers', function () {
+                        scope.infantPassengers = scope.defaultInfantPassengers;
+                    });
 
                     scope.updatePassengerCount = function() {
                         if ((parseInt(scope.adultPassengers) + parseInt(scope.childPassengers) + parseInt(scope.infantPassengers)) <= 0) {

@@ -12,15 +12,16 @@
   <h1>Find a flight</h1>
   <h2>1. Select number of passengers</h2>
   <passenger-selector
-      adult-passengers="{{ passengers.adults }}"
-      child-passengers="{{ passengers.children }}"
-      infant-passengers="{{ passengers.infants }}"
+      default-adult-passengers="{{ passengers.adults }}"
+      default-child-passengers="{{ passengers.children }}"
+      default-infant-passengers="{{ passengers.infants }}"
       update-passenger-count-callback="setPassengerCount(adults, children, infants)"
   ></passenger-selector>
 
   <div ng-if="!loadingAirportData">
     <h2>2. Select a departure airport</h2>
     <departure-airport-selector
+        default-airport-id="departureAirport"
         airport-list="airportList"
         update-departure-airport-callback="setDepartureAirport(airportId)"
     ></departure-airport-selector>

@@ -17,11 +17,17 @@ define([
             return {
                 restrict: 'E',
                 scope: {
+                    defaultAirportId: '=',
                     getAirportList: '&airportList',
                     updateDepartureAirportCallback: '&'
                 },
                 template: template,
                 link: function(scope) {
+                    scope.$watch('defaultAirportId', function() {
+                        console.log(scope.defaultAirportId);
+                        scope.departureAirport = {id: scope.defaultAirportId, name:''};
+                    });
+
                     scope.departureAirport = null;
 
                     scope.updateDepartureAirport = function() {

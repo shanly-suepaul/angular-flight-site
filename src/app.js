@@ -38,13 +38,21 @@ define([
         ) {
             $scope.loadingAirportData = true;
             $scope.loadingArrivalAirports = true;
-            $scope.passengers = {
+
+            // model default values
+            var defaultPassengers = {
                 adults: 1,
                 children: 0,
                 infants: 0
             };
-            $scope.departureAirport = null;
-            $scope.arrivalAirport = null;
+            var defaultDepartureAirport = 'LHR';
+            var defaultArrivalAirport = null;
+
+            // internal models
+            $scope.passengers = defaultPassengers;
+            $scope.departureAirport = defaultDepartureAirport;
+            $scope.arrivalAirport = defaultArrivalAirport;
+
             $scope.airportList = [];
             $scope.arrivalAirports = [];
             $scope.departureDate = moment().format('D MMM YYYY').toString();
@@ -89,6 +97,8 @@ define([
                     children: parseInt(children),
                     infants: parseInt(infants)
                 };
+
+                $scope.departureAirport = defaultDepartureAirport;
             };
 
             $scope.setDepartureAirport = function (airportId) {
