@@ -1,13 +1,22 @@
 define([
     'angular',
 
+    // external depedencies
+    'moment',
+    'pikaday',
+
+    // services
     './services/dataAPI',
 
+    // directives
     './passengerSelector/passengerSelector',
     './departureAirportSelector/departureAirportSelector',
     './arrivalAirportSelector/arrivalAirportSelector'
 ], function (
-    ng
+    ng,
+
+    moment,
+    Pikaday
 ) {
     'use strict';
 
@@ -20,9 +29,11 @@ define([
 
     app.controller('FlightSelectorController', [
         '$scope',
+        '$element',
         'dataAPI',
         function(
             $scope,
+            $element,
             dataAPI
         ) {
             $scope.loadingAirportData = true;
@@ -36,6 +47,33 @@ define([
             $scope.arrivalAirport = null;
             $scope.airportList = [];
             $scope.arrivalAirports = [];
+            $scope.departureDate = moment().format('D MMM YYYY').toString();
+            $scope.availableDates = [];
+
+            dataAPI.getAvailableDates().then(function (availableDates) {
+                $scope.availableDates = availableDates;
+            }, function (error) {
+                console.log('Whoops!');
+                $scope.availableDates = [];
+            });
+
+
+            new Pikaday({
+                field: document.getElementById('departure'),
+                disableDayFn: function( date ) {
+                    // check if we have availableDates
+                    // get the date formatted correctly
+                    var dateFormatted = moment(new Date(date)).format('L').toString();
+
+                    // Disable all days that are not in the availableDates array
+                    if ($scope.availableDates.indexOf(dateFormatted) === -1) {
+                        return true;
+                    }
+                },
+                onSelect: function() {
+                    console.log($scope.departureDate);
+                }
+            });
 
             dataAPI.getAiportData().then(function(airportList) {
                 $scope.airportList = airportList;

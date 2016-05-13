@@ -9,7 +9,9 @@ requirejs.config({
         'almond': '../bower_components/almond/almond',
         'angular': '../bower_components/angular/angular',
         'ngDialog': '../bower_components/ng-dialog/js/ngDialog',
-        'text': '../bower_components/requirejs-text/text'
+        'text': '../bower_components/requirejs-text/text',
+        'pikaday': '../bower_components/pikaday/pikaday',
+        'moment': '../bower_components/moment/moment'
     },
     shim: {
         'angular': {
