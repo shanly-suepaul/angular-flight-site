@@ -36,6 +36,16 @@ function (
                         console.log('Something went wrong!');
                         return [];
                     });
+                },
+
+                getAvailableDates: function() {
+                    // @todo change to endpoint that can use POST
+                    return $http.get('availableDates.json').then(function (response) {
+                        return response.data.availableDates;
+                    }, function(error) {
+                        console.log('Something went wrong!');
+                        return [];
+                    });
                 }
             };
     } ]);
