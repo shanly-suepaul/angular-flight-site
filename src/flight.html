@@ -1,0 +1,31 @@
+<div>
+  <h2>1. Select number of passengers</h2>
+  <passenger-selector
+      default-adult-passengers="passengers.adults"
+      default-child-passengers="passengers.children"
+      default-infant-passengers="passengers.infants"
+      update-passenger-count-callback="setPassengerCount(adults, children, infants)"
+  ></passenger-selector>
+
+  <div ng-if="!loadingAirportData">
+    <h2>2. Select a departure airport</h2>
+    <departure-airport-selector
+        default-airport-id="departureAirport"
+        airport-list="airportList"
+        update-departure-airport-callback="setDepartureAirport(airportId)"
+    ></departure-airport-selector>
+  </div>
+
+  <div ng-if="!loadingArrivalAirports && !loadingAirportData">
+    <h2>3. Select an arrival airport</h2>
+    <arrival-airport-selector
+        airport-list="airportList"
+        valid-airport-ids="arrivalAirports"
+        update-arrival-airport-callback="setArrivalAirport(airportId)"
+    ></arrival-airport-selector>
+  </div>
+
+  <h2>4. Select a departure date</h2>
+  <label for="departure">Departure date:</label>
+  <input id="departure" type="text" ng-model="departureDate" />
+</div>
